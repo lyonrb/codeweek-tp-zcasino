@@ -1,31 +1,28 @@
 
 class Jeu
 
-  def initialize (mise_depart)
+  def initialize(mise_depart)
     @joueur = Joueur.new mise_depart   
     @roulette = Roulette.new  
     boucle 
-    
   end
   
-  def tour 
-    numeroj = @joueur.choose_number
+  def tour
+    mise = @joueur.demande_mise
+    numeroj = @joueur.choisi_numéro
     @roulette.lancer! 
 
     if numeroj == @roulette.numero 
-      @joueur.add_cagnotte @joueur.mise*4 
+      @joueur.gagne mise*4 
     elsif Roulette.couleur numeroj == @roulette.couleur 
-      @joueur.add_cagnotte @joueur.mise*1.5   
-    else
-      @joueur.add_cagnotte -@joueur.mise 
+      @joueur.gagne mise*1.5   
     end
   end
 
   def boucle 
-    until @joueur.peutjouer == false  
+    until @joueur.cagnotte_vide?  
       tour
     end 
-
   end
 
 end

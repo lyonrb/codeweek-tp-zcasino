@@ -8,4 +8,8 @@ class Roulette
   def couleur
     @numero.even? ? :noir : :rouge
   end
+
+  def self.couleur(numero)
+    numero.even? ? :noir : :rouge
+  end
 end

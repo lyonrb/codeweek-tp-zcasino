@@ -1,10 +1,31 @@
-require './roulette.rb'
 
-roulette = Roulette.new
+class Jeu
 
-roulette.lancer!
-numero_tire   = roulette.numero
-couleur_tiree = roulette.couleur
+  def initialize (mise_depart)
+    @joueur = Joueur.new mise_depart   
+    @roulette = Roulette.new  
+    boucle 
+    
+  end
+  
+  def tour 
+    numeroj = @joueur.choose_number
+    @roulette.lancer! 
 
-puts numero_tire
-puts couleur_tiree
+    if numeroj == @roulette.numero 
+      @joueur.add_cagnotte @joueur.mise*4 
+    elsif @roulette.couleur numeroj == @roulette.couleur  @roulette.numero 
+      @joueur.add_cagnotte @joueur.mise*1.5   
+    else
+      @joueur.add_cagnotte -@joueur.mise 
+    end
+  end
+
+  def boucle 
+    until @joueur.peutjouer == false  
+      tour
+    end 
+
+  end
+
+end

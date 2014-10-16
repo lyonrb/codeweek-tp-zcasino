@@ -14,7 +14,7 @@ class Jeu
 
     if numeroj == @roulette.numero 
       @joueur.add_cagnotte @joueur.mise*4 
-    elsif @roulette.couleur numeroj == @roulette.couleur  @roulette.numero 
+    elsif Roulette.couleur numeroj == @roulette.couleur 
       @joueur.add_cagnotte @joueur.mise*1.5   
     else
       @joueur.add_cagnotte -@joueur.mise 

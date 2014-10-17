@@ -9,27 +9,37 @@ class Jeu
     puts "###### NOUVEAU TOUR #######"
     misej   = @joueur.demande_mise
     numeroj = @joueur.choisi_numéro
-    @roulette.lancer!
-
-    puts "--> Numéro tiré :   #{@roulette.numero}"
-    puts "--> Couleur tirée : #{@roulette.couleur}"
-    if @roulette.numero == 0
-      puts "--> Joueur gagne #{36 * misej}"
-      @joueur.gagne(36 * misej)
-    elsif @roulette.numero == numeroj
-      puts "--> Joueur gagne #{4 * misej}"
-      @joueur.gagne(4 * misej)
-    elsif @roulette.couleur == Roulette.couleur(numeroj)
-      puts "--> Joueur gagne #{1.5 * misej}"
-      @joueur.gagne(1.5 * misej)
-    else
-      puts "--> Vous avez lamentablement perdu"
-    end
+    lancer_la_bille!
+    resoudre_les_mises!(misej, numeroj)
   end
 
   def boucle
-    until @joueur.cagnotte_vide?
-      tour
-    end
+    tour until @joueur.cagnotte_vide?
+    puts "Vous êtes lessivé ! Sortez de mon casino !"
+  end
+
+private
+
+  def lancer_la_bille!
+    @roulette.lancer!
+    puts "--> Numéro tiré :   #{@roulette.numero}"
+    puts "--> Couleur tirée : #{@roulette.couleur}"
+  end
+  
+  def resoudre_les_mises!(misej, numeroj)
+    if @roulette.numero == 0
+      joueur_gagne(36 * misej)
+    elsif @roulette.numero == numeroj
+      joueur_gagne(4 * misej)
+    elsif @roulette.couleur == Roulette.couleur(numeroj)
+      joueur_gagne(1.5 * misej)
+    else
+      puts "--> Vous avez lamentablement perdu"
+    end 
+  end
+    
+  def joueur_gagne(pactole)
+    puts "--> Joueur gagne #{pactole}"
+    @joueur.gagne(pactole)
   end
 end

@@ -13,13 +13,17 @@ class Jeu
 
     puts "--> Numéro tiré :   #{@roulette.numero}"
     puts "--> Couleur tirée : #{@roulette.couleur}"
-
-    if numeroj == @roulette.numero
+    if @roulette.numero == 0
+      puts "--> Joueur gagne #{36 * misej}"
+      @joueur.gagne(36 * misej)
+    elsif @roulette.numero == numeroj
       puts "--> Joueur gagne #{4 * misej}"
       @joueur.gagne(4 * misej)
-    elsif Roulette.couleur(numeroj) == @roulette.couleur
+    elsif @roulette.couleur == Roulette.couleur(numeroj)
       puts "--> Joueur gagne #{1.5 * misej}"
       @joueur.gagne(1.5 * misej)
+    else
+      puts "--> Vous avez lamentablement perdu"
     end
   end
 

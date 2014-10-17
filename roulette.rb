@@ -6,10 +6,18 @@ class Roulette
   end
 
   def couleur
-    @numero.even? ? :noir : :rouge
+    if @numero == 0
+      :vert
+    else
+      @numero.even? ? :noir : :rouge
+    end
   end
 
   def self.couleur(numero)
-    numero.even? ? :noir : :rouge
+    if numero == 0
+      :vert
+    else
+      numero.even? ? :noir : :rouge
+    end
   end
 end

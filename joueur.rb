@@ -1,4 +1,3 @@
-
 class Joueur
   def initialize(cagnotte = 10)
     raise "La cagnotte doit être un entier positif" unless positive_integer?(cagnotte)

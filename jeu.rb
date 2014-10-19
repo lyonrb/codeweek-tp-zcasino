@@ -1,6 +1,6 @@
 class Jeu
   def initialize(mise_depart)
-    @joueur = Joueur.new(mise_depart)
+    @joueur = IntelligenceArtificielle.new(mise_depart)
     @roulette = Roulette.new
     boucle
   end
